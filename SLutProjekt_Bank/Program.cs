@@ -44,7 +44,10 @@
 //-----------------------------------------------------------------------------------
 
 int saldo = start(); // här sparas startkapital värdet i int saldo som start metoden retunerar
-BankUpplevelse(saldo); // skickar in saldo värdet i bankupplevesen metoden
+
+List<Investering> minaInvesteringar = new List<Investering>(); // Skpar listan som förvarar Invensteringarna innan upplevesle metoden för att jag ska kunna använda den i den metoden.
+
+BankUpplevelse(saldo, minaInvesteringar); // skickar in saldo värdet i bankupplevesen metoden
 
  static int start()
 {
@@ -69,7 +72,7 @@ BankUpplevelse(saldo); // skickar in saldo värdet i bankupplevesen metoden
 // Bankuppleveslen
 //-----------------------------------------------------------------------------------------------
 
-static void BankUpplevelse(int saldo) // Jag behöver hämta saldo variabeln från start metoden
+static void BankUpplevelse(int saldo, List<Investering> minaInvesteringar) // Jag behöver hämta saldo variabeln från start metoden
 {
     bool spela = true;
 
@@ -92,6 +95,10 @@ static void BankUpplevelse(int saldo) // Jag behöver hämta saldo variabeln fr�
                 
             }
 
+//========================================
+// BankValet 1 (Visar saldo)
+//----------------------------------------
+
 
         if(BankValet == 1)
         {
@@ -99,54 +106,78 @@ static void BankUpplevelse(int saldo) // Jag behöver hämta saldo variabeln fr�
             Console.ReadLine();
         }
 
+//========================================
+// BankValet 2 (Invensteringar)
+//----------------------------------------
+
         else if(BankValet == 2)
         {
-            Console.WriteLine("===== INVESTERINGAR =====");
-            Console.WriteLine("1. Lemonadstånd (kostar 500 kr, tjänar 50 kr/dag)");
-            Console.WriteLine("2. Aktier (kostar 2000 kr, tjänar 200 kr/dag)");
-            Console.WriteLine("3. Tillbaka");
+            VisaInvesteringar(ref saldo, minaInvesteringar);
 
-            string Invensteringsval = Console.ReadLine();
-            int.TryParse(Invensteringsval, out int investeringValet);
-
-            if(investeringValet == 1)
+            static void VisaInvesteringar(ref int saldo, List<Investering> minaInvesteringar)
             {
-                if(saldo >= 500)
+                Console.WriteLine("===== INVESTERINGAR =====");
+                Console.WriteLine("1. Lemonadstånd (500 kr, 50 kr/dag)");
+                Console.WriteLine("2. Aktier (2000 kr, 200 kr/dag)");
+                Console.WriteLine("3. Tillbaka");
+
+                string val = Console.ReadLine();
+                int.TryParse(val, out int investeringValet);
+
+                if (investeringValet == 1)
                 {
-                    saldo -= 500;
-                    Console.WriteLine("Du köpte ett Lemonadstånd!");
+                    if (saldo >= 500)
+                    {
+                        saldo -= 500;
+                        minaInvesteringar.Add(new Investering("Lemonadstånd", 500, 50));
+                        Console.WriteLine("Du köpte ett Lemonadstånd!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Inte tillräckligt med pengar!");
+                    }
                     Console.ReadLine();
                 }
 
-                else
+                else if (investeringValet == 2)
                 {
-                    Console.WriteLine("Du har inte tillräckligt med pengar!");
-                    Console.ReadLine();
-                }
-            }
-
-            if(investeringValet == 2)
-            {
-                if(saldo >= 2000)
-                {
-                    saldo -= 2000;
-                    Console.WriteLine("Du köpte ett Aktier!");
-                    Console.ReadLine();
-                }
-                
-                else
-                {
-                    Console.WriteLine("Du har inte tillräckligt med pengar!");
+                    if (saldo >= 2000)
+                    {
+                        saldo -= 2000;
+                        minaInvesteringar.Add(new Investering("Aktier", 2000, 200));
+                        Console.WriteLine("Du köpte Aktier!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Inte tillräckligt med pengar!");
+                    }
                     Console.ReadLine();
                 }
             }
         }
+
+//========================================
+// BankValet 3 (Nästa dag)
+//----------------------------------------
 
         else if(BankValet == 3)
         {
-            Console.WriteLine("Du valde 3");
-            Console.ReadLine();
+            int totalInkomst = 0;
+
+                foreach (Investering inv in minaInvesteringar)
+                {
+                    totalInkomst += inv.InkomstPerDag;
+                }
+
+                saldo += totalInkomst;
+
+                Console.WriteLine($"Du tjänade {totalInkomst} kr idag!");
+                Console.ReadLine();
         }
+
+//========================================
+// BankValet 4 (avsluta spelet)
+//----------------------------------------
 
         else if(BankValet == 4)
         {
@@ -156,4 +187,21 @@ static void BankUpplevelse(int saldo) // Jag behöver hämta saldo variabeln fr�
     
 }
 
+//====================================================================================
+// skapade klassen för invensteringar den ligge rutanföra själva programet men jag ska 
+// senare lägga till den i en egen program.cs fil men i nuläget har jag glömt hur man gör det.
+//------------------------------------------------------------------------------------
 
+class Investering
+{
+    public string Namn;
+    public int Kostnad;
+    public int InkomstPerDag;
+
+    public Investering(string namn, int kostnad, int inkomstPerDag)
+    {
+        Namn = namn;
+        Kostnad = kostnad;
+        InkomstPerDag = inkomstPerDag;
+    }
+}

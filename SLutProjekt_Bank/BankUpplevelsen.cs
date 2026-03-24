@@ -1,6 +1,7 @@
 using System;
 using InvesteringarKlass;
 using VisarInvensteringarKlassen;
+using NyDagKlassen;
 
 namespace Bank;
 
@@ -56,18 +57,7 @@ public class BankUpplevelsen
 
             else if(BankValet == 3)
             {
-                int totalInkomst = 0;
-
-                    foreach (Investering inv in minaInvesteringar)
-                    {
-                        totalInkomst += Investering.InkomstPerDag; //anropar från investering
-                    }
-
-                    saldo += totalInkomst;
-
-                    Console.WriteLine($"Du tjänade {totalInkomst} kr idag!");
-                    Console.ReadLine();
-                    Console.Clear();
+                NästaDag.DagligaHändelser(saldo, minaInvesteringar);
             }
 
     //========================================

@@ -35,8 +35,8 @@ public class NästaDag
 
             else if(slumpadHändelse == "EkonomiskStress")
             {
-                Investering.InkomstPerDag /= 2;
-                Console.WriteLine("Det har varit en stressig dag vilket gjorde så du bara genererade hälften av vad du brukar");
+                Investering.InkomstPerDag -= 500;
+                Console.WriteLine("Det har varit en stressig dag vilket gjorde att du gick back 500 kr från avd du vanligtvis genererar");
                 Console.ReadLine();
                 Console.Clear();
 
@@ -44,8 +44,8 @@ public class NästaDag
 
             else if(slumpadHändelse == "BlomstradEkonomi")
             {
-                Investering.InkomstPerDag *= 2;
-                Console.WriteLine("Denna dag har blomstrad för dig och du lyckades fördubbla din vanliga dagliga inkomst");
+                Investering.InkomstPerDag += 500;
+                Console.WriteLine("Denna dag har blomstrad för dig och du lyckades tjäna 500kr mer än vanligtvist");
                 Console.ReadLine();
                 Console.Clear();
             }

@@ -28,6 +28,7 @@ public class BankUpplevelsen
                     Console.WriteLine("Du måste skriva en siffra på vad du vill göra, 1-4");
                     BankValen = Console.ReadLine();
                     int.TryParse(BankValen, out BankValet);
+                    Console.Clear();
                     
                 }
 
@@ -40,6 +41,7 @@ public class BankUpplevelsen
             {
                 Console.WriteLine($"Du har ett Saldo på {saldo} kr");
                 Console.ReadLine();
+                Console.Clear();
             }
 
     //========================================
@@ -49,6 +51,7 @@ public class BankUpplevelsen
             else if(BankValet == 2)
             {
                 VisarInvensteringar.VisaInvesteringar(ref saldo, minaInvesteringar);
+                Console.Clear();
             }
 
     //========================================
@@ -58,6 +61,7 @@ public class BankUpplevelsen
             else if(BankValet == 3)
             {
                 NästaDag.DagligaHändelser(saldo, minaInvesteringar);
+                Console.Clear();
             }
 
     //========================================
@@ -67,6 +71,7 @@ public class BankUpplevelsen
             else if(BankValet == 4)
             {
                 spela = false;
+                Console.Clear();
             }
         }
         

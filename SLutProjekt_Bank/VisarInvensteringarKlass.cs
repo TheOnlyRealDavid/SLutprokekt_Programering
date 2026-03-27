@@ -17,33 +17,65 @@ public class VisarInvensteringar
 
                 if (investeringValet == 1)
                 {
-                    if (saldo >= 500)
+                    Console.Write("Hur många lemonadstånd vill du köpa? ");
+                    string hurMånga = Console.ReadLine(); //skriver in hur många lemonadstån man vill ha
+                    int.TryParse(hurMånga, out int antal);
+                    Console.Clear();
+
+                    int kostnad = antal * 500;
+
+                    if (antal > 0 && saldo >= kostnad) // om antal är större än 0 ock du har mer pengar än vad kostar kommer det gå vidare
                     {
-                        saldo -= 500;
-                        minaInvesteringar.Add(new Investering("Lemonadstånd", 500, 50));
-                        Console.WriteLine("Du köpte ett Lemonadstånd!");
+                        saldo -= kostnad;
+
+                        for (int i = 0; i < antal; i++) //lägger till ett lemonadstånd till i blir = antalet du valde
+                        {
+                            minaInvesteringar.Add(new Investering("Lemonadstånd", 500, 50));
+                        }
+
+                        Console.WriteLine($"Du köpte {antal} Lemonadstånd!");
+                        Console.ReadLine();
+                        Console.Clear();
                     }
 
                     else
                     {
-                        Console.WriteLine("Inte tillräckligt med pengar!");
-                    }
+                        Console.WriteLine("Ogiltigt antal eller inte tillräckligt med pengar!");
                         Console.ReadLine();
+                        Console.Clear();
+                    }
+
                 }
 
-                    else if (investeringValet == 2)
+                else if (investeringValet == 2)
+                {
+                    Console.Write("Hur många aktier vill du köpa? ");
+                    string hurMånga = Console.ReadLine(); //skriver in hur många aktier man vill ha
+                    int.TryParse(hurMånga, out int antal);
+                    Console.Clear();
+
+                    int kostnad = antal * 2000;
+
+                    if (antal > 0 && saldo >= kostnad) // om antal är större än 0 och du har mer pengar än vad det kostar
                     {
-                        if (saldo >= 2000)
+                        saldo -= kostnad;
+
+                        for (int i = 0; i < antal; i++) //lägger till aktier beroende på antal valda
                         {
-                            saldo -= 2000;
                             minaInvesteringar.Add(new Investering("Aktier", 2000, 200));
-                            Console.WriteLine("Du köpte Aktier!");
                         }
-                        else
-                        {
-                            Console.WriteLine("Inte tillräckligt med pengar!");
-                        }
-                            Console.ReadLine();
+
+                        Console.WriteLine($"Du köpte {antal} Aktier!");
+                        Console.ReadLine();
+                        Console.Clear();
                     }
+
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt antal eller inte tillräckligt med pengar!");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                }
         }
 }

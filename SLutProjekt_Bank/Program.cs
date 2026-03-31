@@ -44,7 +44,8 @@ using StartKlass;
 using Bank;
 
 int saldo = Starten.start(); // här sparas startkapital värdet i int saldo som start metoden retunerar
+int startkapital = saldo;
 
 List<Investering> minaInvesteringar = new List<Investering>(); // Skpar listan som förvarar Invensteringarna innan upplevesle metoden för att jag ska kunna använda den i den metoden.
 
-BankUpplevelsen.BankUpplevelse(saldo, minaInvesteringar); // skickar in saldo värdet i bankupplevesen metoden
+BankUpplevelsen.BankUpplevelse(saldo, startkapital ,minaInvesteringar); // skickar in saldo värdet i bankupplevesen metoden

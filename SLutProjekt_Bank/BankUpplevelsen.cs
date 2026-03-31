@@ -7,13 +7,34 @@ namespace Bank;
 
 public class BankUpplevelsen
 {
-    public List<Investering> minaInvesteringar = new List<Investering>(); // Skpar listan som förvarar Invensteringarna innan upplevesle metoden för att jag ska kunna använda den i den metoden.
-    public static void BankUpplevelse(int saldo, List<Investering> minaInvesteringar) // Jag behöver hämta saldo variabeln från start metoden
+    public static void BankUpplevelse(int saldo, int startkapital ,List<Investering> minaInvesteringar) // Jag behöver hämta saldo variabeln från start metoden
     {
         bool spela = true; //Har en bool för att man ska kunna stänga av spelet när man vill genom att välja 4. avsluta
 
         while (spela == true)
         {
+
+            if (saldo < 0) //avslutar spelet om du tar slut på alla dina pengar
+            {   
+                int totalTjänat = Math.Max(0, saldo - startkapital);
+
+                Console.WriteLine("Du har gått i konkurs! Spelet är slut.");
+                Console.WriteLine($"Du tjänade totalt {totalTjänat} kr");
+                Console.WriteLine($"Antal investeringar: {minaInvesteringar.Count}"); //visar hur många invensteringar du har köpt
+                Console.ReadLine();
+                spela = false;
+            }
+
+            else if (saldo >= 100000) // vinner speler när du har nåt 100 tusen kr
+            {   
+                int totalTjänat = Math.Max(0, saldo - startkapital);
+
+                Console.WriteLine("Grattis! Du har nått 100 000 kr och vunnit spelet!");
+                Console.WriteLine($"DU tjänade totalt: {totalTjänat} kr");
+                Console.WriteLine($"Antal investeringar: {minaInvesteringar.Count}"); //visar hur många invensteringar du har köpt
+                spela = false;
+            }
+
             Console.WriteLine("===== DIN BANK =====");
             Console.WriteLine("1. Visa saldo");
             Console.WriteLine("2. Visa Uppgraderingar/Invensteringar");
@@ -60,7 +81,7 @@ public class BankUpplevelsen
 
             else if(BankValet == 3)
             {
-                NästaDag.DagligaHändelser(saldo, minaInvesteringar);
+                NästaDag.DagligaHändelser(ref saldo, minaInvesteringar);
                 Console.Clear();
             }
 

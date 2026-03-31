@@ -1,12 +1,13 @@
 using System;
 using InvesteringarKlass;
+using StartKlass;
 using VisarInvensteringarKlassen;
 
 namespace NyDagKlassen;
 
 public class NästaDag
 {
-    public static void DagligaHändelser(int saldo, List<Investering> minaInvesteringar)
+    public static void DagligaHändelser(ref int saldo, List<Investering> minaInvesteringar)
     {
         int totalInkomst = 0; //Säter totalt inkostem till noll som vi sedan ändrar på, alltså den ska börja på noll varje gång metoden körs
 
@@ -52,7 +53,8 @@ public class NästaDag
 
         }
 
-
+        else
+        {
             foreach (Investering inv in minaInvesteringar)
             {
                 totalInkomst += Investering.InkomstPerDag; //anropar från investering
@@ -62,7 +64,10 @@ public class NästaDag
 
             Console.WriteLine($"Du tjänade {totalInkomst} kr idag!");
             Console.ReadLine();
-            Console.Clear();
+            Console.Clear();  
+        }
+
+
     }
 
 

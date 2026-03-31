@@ -15,7 +15,7 @@ public class Starten
         string namn = Console.ReadLine();
         Console.Clear();
 
-        while(string.IsNullOrEmpty(namn))//här så kollar den om namn är 0 eller tom och om det är det så aktiveras loopen
+        while(string.IsNullOrEmpty(namn))//här så kollar den om namn är 0 eller tom och om det är det så aktiveras
         {
             Console.Write("Skriv ditt namn för att skapa ett bankkonto: ");
             namn = Console.ReadLine();

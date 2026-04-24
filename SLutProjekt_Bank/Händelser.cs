@@ -20,24 +20,24 @@ public class NästaDag
 
             if(slumpadHändelse == "LyckadInvestering")
             {
-                Investering.InkomstPerDag *= 5;
-                Console.WriteLine("Du hadde en lyckad investering i aktier och femdublerade din dagliga inkomst");
+                saldo *= 5;
+                Console.WriteLine("Du hadde en lyckad investering i aktier och femdublerade ditt saldo");
                 Console.ReadLine();
                 Console.Clear();
             }
 
             else if(slumpadHändelse == "MisslyckadInvestering")
             {
-                Investering.InkomstPerDag *= 0;
-                Console.WriteLine("Dina aktier krashade vilket gav din ingen daglig inkomst");
+                saldo *= 0;
+                Console.WriteLine("Dina aktier krashade och allt ditt saldo försvann");
                 Console.ReadLine();
                 Console.Clear();
             }
 
             else if(slumpadHändelse == "EkonomiskStress")
             {
-                Investering.InkomstPerDag -= 500;
-                Console.WriteLine("Det har varit en stressig dag vilket gjorde att du gick back 500 kr från avd du vanligtvis genererar");
+                saldo -= 500;
+                Console.WriteLine("Det har varit en stressig dag vilket gjorde att du gick back 500 kr");
                 Console.ReadLine();
                 Console.Clear();
 
@@ -45,8 +45,8 @@ public class NästaDag
 
             else if(slumpadHändelse == "BlomstradEkonomi")
             {
-                Investering.InkomstPerDag += 500;
-                Console.WriteLine("Denna dag har blomstrad för dig och du lyckades tjäna 500kr mer än vanligtvist");
+                saldo += 2000;
+                Console.WriteLine("Denna dag har blomstrad för dig och du lyckades tjäna 2000kr");
                 Console.ReadLine();
                 Console.Clear();
             }
@@ -57,7 +57,7 @@ public class NästaDag
         {
             foreach (Investering inv in minaInvesteringar)
             {
-                totalInkomst += Investering.InkomstPerDag; //anropar från investering
+                totalInkomst += inv.InkomstPerDag; //anropar från investering
             }
 
             saldo += totalInkomst;

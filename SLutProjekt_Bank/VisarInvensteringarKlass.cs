@@ -9,7 +9,7 @@ public class VisarInvensteringar
         {
             Console.WriteLine("===== INVESTERINGAR =====");
             Console.WriteLine("1. Lemonadstånd (500 kr, 50 kr/dag)");
-            Console.WriteLine("2. Aktier (2000 kr, 200 kr/dag)");
+            Console.WriteLine("2. Aktier (2000 kr, 350 kr/dag)");
             Console.WriteLine("3. Tillbaka");
 
             string val = Console.ReadLine();
@@ -62,7 +62,7 @@ public class VisarInvensteringar
 
                         for (int i = 0; i < antal; i++) //lägger till aktier beroende på antal valda
                         {
-                            minaInvesteringar.Add(new Investering("Aktier", 2000, 200));
+                            minaInvesteringar.Add(new Investering("Aktier", 2000, 350));
                         }
 
                         Console.WriteLine($"Du köpte {antal} Aktier!");

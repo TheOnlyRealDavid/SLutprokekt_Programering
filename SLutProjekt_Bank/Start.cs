@@ -1,5 +1,5 @@
 using System;
-
+using Bank;
 namespace StartKlass;
 
 public class Starten
@@ -23,6 +23,16 @@ public class Starten
         }
 
         int startkapital = 1000;
+
+        if(namn == "vinna") //behöver ett fusk för att testa vinst scenen
+        {
+           startkapital = 100000; 
+        }
+
+        else if(namn == "förlora") //behöver ett fusk för att testa förlorar scenen
+        {
+           startkapital = -1; 
+        }
 
         Console.WriteLine($"Välkommen {namn}! Du börjar med {startkapital} kr.");
 

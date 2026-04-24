@@ -23,6 +23,7 @@ public class BankUpplevelsen
                 Console.WriteLine($"Antal investeringar: {minaInvesteringar.Count}"); //visar hur många invensteringar du har köpt
                 Console.ReadLine();
                 spela = false;
+                break; //behövs för att stoppa loopen
             }
 
             else if (saldo >= 100000) // vinner speler när du har nåt 100 tusen kr
@@ -32,7 +33,9 @@ public class BankUpplevelsen
                 Console.WriteLine("Grattis! Du har nått 100 000 kr och vunnit spelet!");
                 Console.WriteLine($"DU tjänade totalt: {totalTjänat} kr");
                 Console.WriteLine($"Antal investeringar: {minaInvesteringar.Count}"); //visar hur många invensteringar du har köpt
+                Console.ReadLine();
                 spela = false;
+                break; //behövs för att stoppa loopen
             }
 
             Console.WriteLine("===== DIN BANK =====");
